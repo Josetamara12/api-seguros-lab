@@ -1,5 +1,5 @@
 const app = require('./app');
-const { connectDb } = require('./config/db');
+const connectDb = require("./config/db");
 const Customer = require('./models/Customer');
 
 const SEED_CUSTOMERS = [
