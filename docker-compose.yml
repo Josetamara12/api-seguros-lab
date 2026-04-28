@@ -1,0 +1,35 @@
+name: segurospascualb
+
+services:
+
+  # ─── Base de datos ────────────────────────────────────────────────────────
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    ports:
+      - "27017:27017"          # expuesto para inspección con MongoDB Compass
+    volumes:
+      - mongo_data:/data/db    # datos persistentes entre reinicios
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 20s        # tiempo extra para el primer arranque en frío
+
+  # ─── API REST ─────────────────────────────────────────────────────────────
+  api:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: 3000
+      MONGODB_URI: mongodb://mongo:27017/segurosdb
+      NODE_ENV: production
+    depends_on:
+      mongo:
+        condition: service_healthy   # no arranca hasta que Mongo responda
+
+volumes:
+  mongo_data:    # volumen nombrado → los datos sobreviven a 'docker compose down'

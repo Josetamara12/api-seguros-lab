@@ -1,0 +1,38 @@
+module.exports = [
+  {
+    id: 'vida',
+    nombre: 'Seguro de Vida',
+    descripcion: 'Cobertura por fallecimiento o invalidez total y permanente',
+    montoBase: 500000,
+    factorRiesgo: 1.5,
+    gastosAdministrativos: 50000,
+    restricciones: 'Solo disponible para personas entre 18 y 65 años',
+  },
+  {
+    id: 'auto',
+    nombre: 'Seguro de Auto',
+    descripcion: 'Cobertura de daños a terceros y al vehículo propio',
+    montoBase: 200000,
+    factorRiesgo: 1.2,
+    gastosAdministrativos: 30000,
+    restricciones: null,
+  },
+  {
+    id: 'hogar',
+    nombre: 'Seguro de Hogar',
+    descripcion: 'Cobertura de incendio, robo y daños estructurales',
+    montoBase: 300000,
+    factorRiesgo: 1.1,
+    gastosAdministrativos: 25000,
+    restricciones: null,
+  },
+  {
+    id: 'salud',
+    nombre: 'Seguro de Salud',
+    descripcion: 'Cobertura médica integral con red de clínicas',
+    montoBase: 400000,
+    factorRiesgo: 1.3,
+    gastosAdministrativos: 40000,
+    restricciones: null,
+  },
+];
